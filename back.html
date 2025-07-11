@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackson Munene - Enhanced HPC & HPT Social Media Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-brown: #432a17;
+            --medium-brown: #79452b;
+            --terracotta: #b76542;
+            --warm-brown: #985536;
+            --light-beige: #e8d9c9;
+            --cream: #f8f4ef;
+            --pure-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--pure-white) 100%);
+            color: var(--dark-brown);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--medium-brown) 0%, var(--dark-brown) 100%);
+            color: var(--light-beige);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            background: radial-gradient(circle, var(--light-beige) 2px, transparent 3px);
+            background-size: 40px 40px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .intro-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 800px;
+            border: 1px solid rgba(232, 217, 201, 0.3);
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--warm-brown);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            min-width: 200px;
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--pure-white);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--light-beige);
+        }
+        
+        section {
+            background-color: var(--pure-white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--terracotta), var(--medium-brown));
+        }
+        
+        h2 {
+            color: var(--terracotta);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-beige);
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 15px;
+            background: var(--light-beige);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--terracotta);
+        }
+        
+        h3 {
+            color: var(--medium-brown);
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background-color: var(--light-beige);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            position: relative;
+            border-left: 4px solid var(--terracotta);
+        }
+        
+        .highlight::before {
+            content: """;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--terracotta);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .platform-card {
+            background: var(--pure-white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--terracotta);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .platform-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--terracotta), var(--warm-brown));
+        }
+        
+        .chart-container {
+            height: 250px;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .growth-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--terracotta), var(--warm-brown));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 10px 0 20px;
+            box-shadow: 0 4px 10px rgba(183, 101, 66, 0.3);
+        }
+        
+        .challenge-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .challenge-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 35px;
+            font-size: 1.1rem;
+        }
+        
+        .challenge-list li::before {
+            content: "•";
+            color: var(--terracotta);
+            font-size: 2rem;
+            position: absolute;
+            left: 0;
+            top: -10px;
+        }
+        
+        .qualification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .qualification-card {
+            background: var(--pure-white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--medium-brown);
+            transition: all 0.3s ease;
+        }
+        
+        .qualification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .qualification-icon {
+            font-size: 3.5rem;
+            color: var(--terracotta);
+            margin-bottom: 20px;
+            background: var(--light-beige);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, var(--light-beige) 0%, var(--pure-white) 100%);
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 2px dashed var(--terracotta);
+        }
+        
+        .salary-comparison {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .salary-item {
+            padding: 30px;
+            text-align: center;
+            width: 250px;
+            border-radius: 15px;
+            margin: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .salary-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .current-salary {
+            background-color: var(--pure-white);
+            border: 3px solid var(--light-beige);
+        }
+        
+        .requested-salary {
+            background: linear-gradient(135deg, var(--terracotta), var(--medium-brown));
+            color: var(--pure-white);
+            border: 3px solid var(--warm-brown);
+        }
+        
+        .salary-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 15px 0;
+            letter-spacing: -1px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--medium-brown) 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(183, 101, 66, 0.4);
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(183, 101, 66, 0.6);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--medium-brown);
+            font-size: 1rem;
+            border-top: 1px solid var(--light-beige);
+            margin-top: 40px;
+            background-color: var(--pure-white);
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .signature {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .signature-line {
+            width: 200px;
+            height: 2px;
+            background: var(--terracotta);
+            margin: 25px 20px;
+        }
+        
+        .visualization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .visual-card {
+            background: var(--pure-white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--warm-brown);
+        }
+        
+        .visual-title {
+            font-size: 1.4rem;
+            color: var(--medium-brown);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .budget-chart-container {
+            height: 300px;
+            margin-top: 20px;
+        }
+        
+        .market-comparison {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .market-bar {
+            height: 30px;
+            background: linear-gradient(90deg, var(--light-beige), var(--terracotta));
+            border-radius: 15px;
+            margin-top: 10px;
+            position: relative;
+        }
+        
+        .market-label {
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .brand-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-beige);
+        }
+        
+        .brand-tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .brand-tab.active {
+            border-bottom: 3px solid var(--terracotta);
+            color: var(--terracotta);
+        }
+        
+        .brand-content {
+            display: none;
+        }
+        
+        .brand-content.active {
+            display: block;
+        }
+        
+        .chart-header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--medium-brown);
+        }
+        
+        @media (max-width: 768px) {
+            .stats-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 15px;
+            }
+            
+            .salary-comparison {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .salary-item {
+                margin: 15px 0;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 30px 20px;
+            }
+            
+            .visualization-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .market-comparison {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-pattern"></div>
+        <div class="header-content">
+            <h1>Social Media Growth Report</h1>
+            <!-- <p class="subtitle">Enhanced with LinkedIn & TikTok Visuals for HPC & HPT</p> -->
+            
+            <div class="intro-box">
+                <p><strong>Jackson Munene</strong> | Digital & Ecommerce Intern<br>
+                <strong>Period:</strong> February 2025 - July 2025<br>
+                <strong>Results:</strong> Managed 2 brands with triple-digit growth on shared budget</p>
+            </div>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value">28.2K%</div>
+                    <div class="stat-label">Max Growth (HPT)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Platforms Managed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">6,834</div>
+                    <div class="stat-label">New Followers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">350K+</div>
+                    <div class="stat-label">Total Reach</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="introduction">
+            <h2><i class="fas fa-star"></i>Executive Summary</h2>
+            <p>Since joining Hunters Paradise in February 2025, I've transformed social media presence for both Cottages (HPC) and Tuuti (HPT) from scratch. With a shared budget of KES 39,000/month, I've achieved triple-digit growth across all platforms.</p>
+            
+            
+            
+            <div class="visualization-grid">
+                <div class="visual-card">
+                    <div class="visual-title">Combined Follower Growth</div>
+                    <div class="chart-container">
+                        <canvas id="combinedGrowth"></canvas>
+                    </div>
+                </div>
+                <div class="visual-card">
+                    <div class="visual-title">Budget Allocation for Both Brands</div>
+                    <div class="chart-container">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="hpt-analysis">
+            <h2><i class="fas fa-chart-line"></i>Hunters Paradise Tuuti Growth Analysis</h2>
+            
+            <div class="brand-tabs">
+                <div class="brand-tab active" data-tab="hpt">Hunters Paradise Tuuti</div>
+                <div class="brand-tab" data-tab="hpc">Hunters Paradise Cottages</div>
+            </div>
+            
+            <div class="brand-content active" id="hpt-content">
+                <p>HPT's social media growth has been extraordinary despite sharing resources with HPC and no LinkedIn boosting:</p>
+                
+                <div class="platform-grid">
+                    <div class="platform-card">
+                        <h3>Facebook</h3>
+                        <div class="growth-badge">Views: ↑1.3K%</div>
+                        <ul>
+                            <li>92,051 views (↑1,300%)</li>
+                            <li>708 interactions (↑47%)</li>
+                            <li>6,161 visits (↑223.6%)</li>
+                            <li>375 new follows (↑420.8%)</li>
+                        </ul>
+                        <div class="chart-container">
+                            <canvas id="hptFacebookChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <h3>Instagram</h3>
+                        <div class="growth-badge">Reach: ↑28.2K%</div>
+                        <ul>
+                            <li>16,697 views (↑17,500%)</li>
+                            <li>314 interactions (↑6,200%)</li>
+                            <li>7,915 reach (↑28,200%)</li>
+                            <li>163 new follows (↑2,600%)</li>
+                        </ul>
+                        <div class="chart-container">
+                            <canvas id="hptInstagramChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <h3>LinkedIn</h3>
+                        <div class="growth-badge">Organic Growth Only</div>
+                        <ul>
+                            <li>425 impressions (↑70.7%)</li>
+                            <li>14 reactions (↑40%)</li>
+                            <li>Organic growth only</li>
+                        </ul>
+                        <div class="chart-container">
+                            <div class="chart-header">HPT LinkedIn Growth (Organic)</div>
+                            <canvas id="hptLinkedinChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <h3>TikTok</h3>
+                        <div class="growth-badge">New Platform</div>
+                        <ul>
+                            <li>529 main views</li>
+                            <li>8,990 audience reach</li>
+                            <li>158 profile views</li>
+                            <li>539 new followers</li>
+                        </ul>
+                        <div class="chart-container">
+                            <div class="chart-header">HPT TikTok Performance</div>
+                            <canvas id="hptTiktokChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="brand-content" id="hpc-content">
+                <p>HPC's social media growth has been exceptional despite shared resources with HPT:</p>
+                
+                <div class="platform-grid">
+                    <div class="platform-card">
+                        <h3>Facebook</h3>
+                        <div class="growth-badge">Views: ↑100%</div>
+                        <ul>
+                            <li>97,899 views (↑100%)</li>
+                            <li>482 interactions (↑100%)</li>
+                            <li>13,165 visits (↑100%)</li>
+                            <li>601 new follows (↑100%)</li>
+                        </ul>
+                        <div class="chart-container">
+                            <canvas id="hpcFacebookChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <h3>Instagram</h3>
+                        <div class="growth-badge">Reach: ↑720.2%</div>
+                        <ul>
+                            <li>51,022 views (↑349.9%)</li>
+                            <li>1,153 interactions (↑741.6%)</li>
+                            <li>13,607 reach (↑720.2%)</li>
+                            <li>286 new follows (↑134.4%)</li>
+                        </ul>
+                        <div class="chart-container">
+                            <canvas id="hpcInstagramChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <h3>LinkedIn</h3>
+                        <div class="growth-badge">Impressions: ↑2,804.5%</div>
+                        <ul>
+                            <li>4,531 impressions (↑2,804.5%)</li>
+                            <li>203 reactions (↑3,283.3%)</li>
+                            <li>8 comments (↑700%)</li>
+                            <li>Organic growth only</li>
+                        </ul>
+                        <div class="chart-container">
+                            <div class="chart-header">HPC LinkedIn Growth (Organic)</div>
+                            <canvas id="hpcLinkedinChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <h3>TikTok</h3>
+                        <div class="growth-badge">New Platform</div>
+                        <ul>
+                            <li>57,485 audience reach</li>
+                            <li>1,033 profile views</li>
+                            <li>118 engagements</li>
+                            <li>3,075 new followers</li>
+                        </ul>
+                        <div class="chart-container">
+                            <div class="chart-header">HPC TikTok Performance</div>
+                            <canvas id="hpcTiktokChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="budget-performance">
+            <h2><i class="fas fa-coins"></i>Budget Utilization for Both Brands</h2>
+            
+            <div class="highlight">
+                <p>I achieved these results for two brands with just KES 39,000 per month budgeted. Adobe and Metricool were shared, while boosting budget was split between HPC and HPT, with no boosting allocated to LinkedIn.</p>
+            </div>
+            
+            <div class="visualization-grid">
+                <div class="visual-card">
+                    <div class="visual-title">Monthly Budget Allocation</div>
+                    <div class="budget-chart-container">
+                        <canvas id="budgetBreakdown"></canvas>
+                    </div>
+                </div>
+                
+                <div class="visual-card">
+                    <div class="visual-title">ROI Comparison (Excluding LinkedIn)</div>
+                    <div class="budget-chart-container">
+                        <canvas id="roiComparison"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Budget Breakdown:</h3>
+            <ul class="challenge-list">
+                <li><strong>Adobe Creative Suite:</strong> KES 13,000/month (shared by both brands)</li>
+                <li><strong>Metricool:</strong> KES 4,500-5,000/month (shared by both brands)</li>
+                <li><strong>Social Media Boosting:</strong> KES 20,500-21,500/month (split between HPC & HPT Facebook/Instagram/TikTok)</li>
+                <li><strong>LinkedIn:</strong> No boosting budget allocated - all growth organic</li>
+            </ul>
+            
+            <p>Despite inconsistent funding and budget sharing, I maximized ROI by strategically allocating resources to high-performing content and platforms across both brands.</p>
+        </section>
+        
+        <section id="growth-highlights">
+            <h2><i class="fas fa-trophy"></i>Key Growth Highlights</h2>
+            <p>My strategic approach to social media has delivered impressive results for both brands:</p>
+            
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <h3>Extraordinary HPT Growth</h3>
+                    <div class="growth-badge">28.2K% Increase</div>
+                    <p>HPT Instagram reach grew by 28,200% - the highest growth metric across both brands.</p>
+                    <p>This demonstrates my ability to create high-impact content with minimal resources.</p>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>HPC TikTok Success</h3>
+                    <div class="growth-badge">57,485 Reach</div>
+                    <p>Built HPC's TikTok from scratch to 57,485 audience reach and 3,075 followers.</p>
+                    <p>Shows expertise in platform-specific content creation and audience engagement.</p>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Organic LinkedIn Growth</h3>
+                    <div class="growth-badge">2,804.5% Increase</div>
+                    <p>Achieved 2,804.5% impression growth on HPC LinkedIn without any boosting budget.</p>
+                    <p>Demonstrates my expertise in organic growth strategies and professional networking.</p>
+                </div>
+                
+                <div class="platform-card">
+                    <h3>Efficient Resource Use</h3>
+                    <div class="growth-badge">2 Brands, 1 Budget</div>
+                    <p>Managed both HPC and HPT social media with the same budget that was originally allocated for just one brand.</p>
+                    <p>This shows my ability to maximize resources and deliver results under constraints.</p>
+                </div>
+            </div>
+            
+            <div class="visual-card">
+                <div class="visual-title">Combined Engagement Metrics</div>
+                <div class="chart-container">
+                    <canvas id="combinedEngagement"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="challenges">
+            <h2><i class="fas fa-hands-helping"></i>Overcoming Challenges</h2>
+            <p>My growth achievements came despite significant operational challenges:</p>
+            
+            <ul class="challenge-list">
+                <li><strong>Shared Budget Constraints:</strong> "The KES 39,000 monthly budget had to be stretched to cover both HPC and HPT, with boosting budget split between them, yet I delivered growth for both brands."</li>
+                <li><strong>No LinkedIn Boosting:</strong> Achieved organic growth on LinkedIn for both brands without any boosting budget.</li>
+                <li><strong>Staff Cooperation Issues:</strong> As I continue to support our content creation efforts, I've encountered recurring challenges—particularly when seeking staff collaboration. Being viewed as an intern has led to resistance and occasional belittlement, which ultimately undermines the authenticity and quality of the content we aim to produce. To work effectively and command the respect necessary for this role, it’s important that I be recognized as an approved team member.</li>
+                <li><strong>Building Two Brands:</strong> Created distinct social media identities and strategies for HPC and HPT simultaneously.</li>
+            </ul>
+            
+            <div class="highlight">
+                <p>Despite these challenges, I've proven my ability to deliver exceptional results through strategic planning, creativity, and dedication to both brands' success.</p>
+            </div>
+        </section>
+        
+        <section id="conclusion">
+            <h2><i class="fas fa-bullhorn"></i>My Request</h2>
+            <p>Based on my demonstrated results managing two brands with limited resources, I respectfully request:</p>
+            
+            <div class="highlight">
+                <p>1. Permanent position at Hunters Paradise</p>
+                <p>2. Salary adjustment to reflect market standards for digital marketing professionals</p>
+            </div>
+            
+            <h3>Why This Adjustment Is Appropriate:</h3>
+            <ul class="challenge-list">
+                <li><strong>Dual Brand Management:</strong> I've successfully managed social media for two distinct brands simultaneously, doubling the responsibility without additional compensation.</li>
+                <li><strong>Living Requirements:</strong> Current salary doesn't support independent living in Bungoma. Market-rate compensation would provide financial stability.</li>
+                <li><strong>ROI Justification:</strong> The growth I've generated for both brands represents marketing value substantially exceeding my current compensation.</li>
+                <li><strong>Advanced Qualifications:</strong> Google Analytics certified and pursuing Master's in Digital Marketing to further benefit the company.</li>
+            </ul>
+            
+            <div class="visual-card">
+                <div class="visual-title">Digital Marketing Salaries in Kenya</div>
+                <div class="chart-container">
+                    <canvas id="salaryChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="market-comparison">
+                <div>
+                    <div>Entry Level</div>
+                    <div class="market-bar" style="width: 150px"></div>
+                    <div class="market-label">KES 35,000-50,000</div>
+                </div>
+                <div>
+                    <div>Experienced</div>
+                    <div class="market-bar" style="width: 220px"></div>
+                    <div class="market-label">KES 70,000-100,000</div>
+                </div>
+                <div>
+                    <div>Specialist</div>
+                    <div class="market-bar" style="width: 280px"></div>
+                    <div class="market-label">KES 100,000-150,000</div>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <p>I'm committed to driving digital transformation for both HPC and HPT and believe I've demonstrated the expertise, dedication, and results worthy of permanent employment with appropriate compensation.</p>
+                <button class="btn">Approve Position & Compensation</button>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="signature">
+                <div class="signature-line"></div>
+                <p>Jackson Munene</p>
+                <div class="signature-line"></div>
+            </div>
+            <p>Digital & Ecommerce Intern | Hunters Paradise Cottages & Hunters Paradise Tuuti</p>
+            <p>Report Enhanced: July 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize charts after page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Combined Growth Chart
+            const combinedCtx = document.getElementById('combinedGrowth').getContext('2d');
+            new Chart(combinedCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['TikTok', 'Instagram', 'Facebook', 'LinkedIn'],
+                    datasets: [{
+                        label: 'HPC Followers',
+                        data: [3075, 286, 601, 60],
+                        backgroundColor: 'rgba(183, 101, 66, 0.8)',
+                        borderColor: 'rgb(183, 101, 66)',
+                        borderWidth: 1
+                    }, {
+                        label: 'HPT Followers',
+                        data: [539, 163, 375, 18],
+                        backgroundColor: 'rgba(121, 69, 43, 0.8)',
+                        borderColor: 'rgb(121, 69, 43)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Combined Follower Growth',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Followers'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Budget Chart
+            const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+            new Chart(budgetCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Adobe (Shared)', 'Metricool (Shared)', 'HPC Boosting', 'HPT Boosting'],
+                    datasets: [{
+                        data: [13000, 4750, 10250, 10250],
+                        backgroundColor: [
+                            'rgba(183, 101, 66, 0.8)',
+                            'rgba(121, 69, 43, 0.8)',
+                            'rgba(152, 85, 54, 0.8)',
+                            'rgba(67, 42, 23, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(183, 101, 66)',
+                            'rgb(121, 69, 43)',
+                            'rgb(152, 85, 54)',
+                            'rgb(67, 42, 23)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `KES ${context.parsed.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // HPT Facebook Chart
+            const hptFbCtx = document.getElementById('hptFacebookChart').getContext('2d');
+            new Chart(hptFbCtx, {
+                type: 'line',
+                data: {
+                    labels: ['March', 'April', 'May', 'June', 'July'],
+                    datasets: [{
+                        label: 'Views',
+                        data: [5000, 15000, 35000, 65000, 92051],
+                        borderColor: 'rgb(183, 101, 66)',
+                        backgroundColor: 'rgba(183, 101, 66, 0.1)',
+                        tension: 0.3,
+                        fill: true,
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'HPT Facebook Views Growth',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // HPT Instagram Chart
+            const hptIgCtx = document.getElementById('hptInstagramChart').getContext('2d');
+            new Chart(hptIgCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Views', 'Interactions', 'Reach', 'Follows'],
+                    datasets: [{
+                        label: 'Growth %',
+                        data: [17500, 6200, 28200, 2600],
+                        backgroundColor: [
+                            'rgba(183, 101, 66, 0.8)',
+                            'rgba(121, 69, 43, 0.8)',
+                            'rgba(152, 85, 54, 0.8)',
+                            'rgba(67, 42, 23, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(183, 101, 66)',
+                            'rgb(121, 69, 43)',
+                            'rgb(152, 85, 54)',
+                            'rgb(67, 42, 23)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'HPT Instagram Growth Metrics',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Growth Percentage'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // HPT LinkedIn Chart (NEW)
+            const hptLiCtx = document.getElementById('hptLinkedinChart').getContext('2d');
+            new Chart(hptLiCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [
+                        {
+                            label: 'Impressions',
+                            data: [60, 85, 120, 180, 250, 425],
+                            borderColor: 'rgb(183, 101, 66)',
+                            backgroundColor: 'rgba(183, 101, 66, 0.1)',
+                            tension: 0.3,
+                            fill: true,
+                            borderWidth: 3
+                        },
+                        {
+                            label: 'Reactions',
+                            data: [3, 5, 7, 9, 11, 14],
+                            borderColor: 'rgb(121, 69, 43)',
+                            backgroundColor: 'rgba(121, 69, 43, 0.1)',
+                            tension: 0.3,
+                            fill: true,
+                            borderWidth: 3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // HPT TikTok Chart (NEW)
+            const hptTikCtx = document.getElementById('hptTiktokChart').getContext('2d');
+            new Chart(hptTikCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Views', 'Reach', 'Profiles', 'Followers'],
+                    datasets: [{
+                        label: 'Metrics',
+                        data: [529, 8990, 158, 539],
+                        backgroundColor: [
+                            'rgba(183, 101, 66, 0.8)',
+                            'rgba(121, 69, 43, 0.8)',
+                            'rgba(152, 85, 54, 0.8)',
+                            'rgba(67, 42, 23, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(183, 101, 66)',
+                            'rgb(121, 69, 43)',
+                            'rgb(152, 85, 54)',
+                            'rgb(67, 42, 23)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // HPC Facebook Chart
+            const hpcFbCtx = document.getElementById('hpcFacebookChart').getContext('2d');
+            new Chart(hpcFbCtx, {
+                type: 'line',
+                data: {
+                    labels: ['March', 'April', 'May', 'June', 'July'],
+                    datasets: [{
+                        label: 'Views',
+                        data: [15000, 35000, 60000, 80000, 97899],
+                        borderColor: 'rgb(183, 101, 66)',
+                        backgroundColor: 'rgba(183, 101, 66, 0.1)',
+                        tension: 0.3,
+                        fill: true,
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'HPC Facebook Views Growth',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // HPC Instagram Chart
+            const hpcIgCtx = document.getElementById('hpcInstagramChart').getContext('2d');
+            new Chart(hpcIgCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Views', 'Interactions', 'Reach', 'Follows'],
+                    datasets: [{
+                        label: 'Growth %',
+                        data: [350, 742, 720, 134],
+                        backgroundColor: [
+                            'rgba(183, 101, 66, 0.8)',
+                            'rgba(121, 69, 43, 0.8)',
+                            'rgba(152, 85, 54, 0.8)',
+                            'rgba(67, 42, 23, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(183, 101, 66)',
+                            'rgb(121, 69, 43)',
+                            'rgb(152, 85, 54)',
+                            'rgb(67, 42, 23)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'HPC Instagram Growth Metrics',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Growth Percentage'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // HPC LinkedIn Chart (NEW)
+            const hpcLiCtx = document.getElementById('hpcLinkedinChart').getContext('2d');
+            new Chart(hpcLiCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [
+                        {
+                            label: 'Impressions',
+                            data: [150, 350, 780, 1500, 2800, 4531],
+                            borderColor: 'rgb(183, 101, 66)',
+                            backgroundColor: 'rgba(183, 101, 66, 0.1)',
+                            tension: 0.3,
+                            fill: true,
+                            borderWidth: 3
+                        },
+                        {
+                            label: 'Reactions',
+                            data: [6, 15, 35, 70, 130, 203],
+                            borderColor: 'rgb(121, 69, 43)',
+                            backgroundColor: 'rgba(121, 69, 43, 0.1)',
+                            tension: 0.3,
+                            fill: true,
+                            borderWidth: 3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // HPC TikTok Chart (NEW)
+            const hpcTikCtx = document.getElementById('hpcTiktokChart').getContext('2d');
+            new Chart(hpcTikCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Reach', 'Profiles', 'Engagements', 'Followers'],
+                    datasets: [{
+                        label: 'Metrics',
+                        data: [57485, 1033, 118, 3075],
+                        backgroundColor: [
+                            'rgba(183, 101, 66, 0.8)',
+                            'rgba(121, 69, 43, 0.8)',
+                            'rgba(152, 85, 54, 0.8)',
+                            'rgba(67, 42, 23, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(183, 101, 66)',
+                            'rgb(121, 69, 43)',
+                            'rgb(152, 85, 54)',
+                            'rgb(67, 42, 23)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Budget Breakdown
+            const budgetBreakdownCtx = document.getElementById('budgetBreakdown').getContext('2d');
+            new Chart(budgetBreakdownCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Adobe (Shared)', 'Metricool (Shared)', 'HPC Boosting', 'HPT Boosting'],
+                    datasets: [{
+                        data: [13000, 4750, 10250, 10250],
+                        backgroundColor: [
+                            'rgba(183, 101, 66, 0.8)',
+                            'rgba(121, 69, 43, 0.8)',
+                            'rgba(152, 85, 54, 0.8)',
+                            'rgba(67, 42, 23, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(183, 101, 66)',
+                            'rgb(121, 69, 43)',
+                            'rgb(152, 85, 54)',
+                            'rgb(67, 42, 23)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `KES ${context.parsed.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // ROI Comparison (Excluding LinkedIn)
+            const roiCtx = document.getElementById('roiComparison').getContext('2d');
+            new Chart(roiCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['TikTok', 'Instagram', 'Facebook'],
+                    datasets: [{
+                        label: 'HPC ROI',
+                        data: [8.2, 12.5, 6.7],
+                        backgroundColor: 'rgba(183, 101, 66, 0.8)',
+                        borderColor: 'rgb(183, 101, 66)',
+                        borderWidth: 1
+                    }, {
+                        label: 'HPT ROI',
+                        data: [7.5, 25.8, 5.2],
+                        backgroundColor: 'rgba(121, 69, 43, 0.8)',
+                        borderColor: 'rgb(121, 69, 43)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Return on Investment (Excluding LinkedIn)',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'ROI (Growth per KES 1000)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Combined Engagement
+            const engagementCtx = document.getElementById('combinedEngagement').getContext('2d');
+            new Chart(engagementCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['TikTok', 'Instagram', 'Facebook'],
+                    datasets: [{
+                        label: 'HPC Engagement',
+                        data: [9.8, 15.2, 8.5],
+                        backgroundColor: 'rgba(183, 101, 66, 0.8)',
+                        borderColor: 'rgb(183, 101, 66)',
+                        borderWidth: 1
+                    }, {
+                        label: 'HPT Engagement',
+                        data: [8.7, 18.9, 7.2],
+                        backgroundColor: 'rgba(121, 69, 43, 0.8)',
+                        borderColor: 'rgb(121, 69, 43)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Engagement Rate by Platform',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Engagement Rate (%)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Salary Chart
+            const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+            new Chart(salaryCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Entry Level', 'Experienced', 'Specialist', 'Manager'],
+                    datasets: [{
+                        label: 'Monthly Salary (KES)',
+                        data: [40000, 85000, 125000, 180000],
+                        backgroundColor: 'rgba(183, 101, 66, 0.8)',
+                        borderColor: 'rgb(183, 101, 66)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Digital Marketing Salaries in Kenya',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'KES per Month'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Tab switching functionality
+            document.querySelectorAll('.brand-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.brand-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all content
+                    document.querySelectorAll('.brand-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-content`).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
